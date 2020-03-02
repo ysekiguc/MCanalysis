@@ -1,14 +1,14 @@
 
 AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 {
-  //    TString data     = "LHC17f2a_fast";//epos
+  //  TString data     = "LHC17f2a_fast";//epos
 
   //  TString data="LHC18h2_extra";//PYTHIA anchored to LHC18f
   //  TString data ="LHC18a9_extra";//PYTHIA
   //  TString data ="LHC16d3";//EPOS_pp
-  //  TString data ="LHC18c12";//EPOS_pp
+    TString data ="LHC18c12";//PYTHIApp
   
-  TString data     = "LHC19h12a_fast";//AMPT default
+  //TString data     = "LHC19h12a_fast";//AMPT default
   //  TString data     = "LHC19h12b_fast";//LHC17i2f";
   //TString data     = "LHC19h12c_fast";//LHC17i2f";
   //  TString data     = "LHC19h12a_cent_wosdd";//LHC17i2f";
@@ -120,8 +120,22 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
       plugin->SetGridDataDir("/alice/sim/2018/LHC18a9_extra");
       plugin->SetDataPattern("AOD209/*/AliAOD.root");
       plugin->AddRunNumber(281961);
-
     }
+
+
+    
+    if(data.Contains("LHC18c12")){
+      plugin->SetGridDataDir("/alice/sim/2018/LHC18c12");
+      plugin->SetDataPattern("AOD231/*/AliAOD.root");
+      plugin->AddRunNumber(271868);
+      plugin->AddRunNumber(271870);
+      plugin->AddRunNumber(271871);
+      plugin->AddRunNumber(271873);
+
+      
+    }
+
+    
     if(data.Contains("LHC18a9_extra")){
       plugin->SetGridDataDir("/alice/sim/2018/LHC18a9_extra");
       plugin->SetDataPattern("AOD209/*/AliAOD.root");
@@ -338,11 +352,8 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 	else if(data.Contains("LHC19h12b_fast")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12b_fast");
 	else if(data.Contains("LHC19h12c_fast")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12c_fast");
 	else if(data.Contains("LHC19h12a_cent_wosdd")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12a_cent_woSDD");
-	
 	plugin->SetDataPattern("AOD228/*/AliAOD.root");
 	//LHC16t
-
-	
 	plugin->AddRunNumber(267166);
 	plugin->AddRunNumber(267165);
 	plugin->AddRunNumber(267164);
@@ -517,7 +528,10 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
   //    plugin->SetGridWorkingDir("03122019_PHYTHIA");
   //  plugin->SetGridWorkingDir("05122019_PHYTHIA_all");
   //  plugin->SetGridWorkingDir("17122019_EPOS_pp");
-  plugin->SetGridWorkingDir("pPb_Efficiency_AMPT_20200302");
+  //  plugin->SetGridWorkingDir("pPb_Efficiency_AMPT_20200302");
+  //  plugin->SetGridWorkingDir("pPb_Efficiency_EPOS_20200302");
+  //  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302");
+  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302_properaliroot");
 
   // Declare alien output directory. Relative to working directory.
   plugin->SetGridOutputDir("output"); // In this case will be $HOME/work/output
