@@ -2,13 +2,13 @@
 AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 {
   //  TString data     = "LHC17f2a_fast";//epos
-
   //  TString data="LHC18h2_extra";//PYTHIA anchored to LHC18f
   //  TString data ="LHC18a9_extra";//PYTHIA
   //  TString data ="LHC16d3";//EPOS_pp
-    TString data ="LHC18c12";//PYTHIApp
   
-  //TString data     = "LHC19h12a_fast";//AMPT default
+   TString data ="LHC18c12";//PYTHIApp
+  
+  // TString data     = "LHC19h12a_fast";//AMPT default
   //  TString data     = "LHC19h12b_fast";//LHC17i2f";
   //TString data     = "LHC19h12c_fast";//LHC17i2f";
   //  TString data     = "LHC19h12a_cent_wosdd";//LHC17i2f";
@@ -23,10 +23,10 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
   plugin->SetOverwriteMode();
   
   plugin->SetMergeViaJDL(1);//
-  plugin->SetRunMode("full");
-  //     plugin->SetRunMode("terminate");
+  // plugin->SetRunMode("full");
+  plugin->SetRunMode("terminate");
   //  plugin->SetRunMode("test");
-
+  
   //Set versions of used packages
   plugin->SetAPIVersion("V1.1x");
   //  plugin->SetAliPhysicsVersion("vAN-20170628-1");
@@ -45,7 +45,7 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 
   //plugin->SetAliPhysicsVersion("vAN-20190920_ROOT6-1");
   plugin->SetAliPhysicsVersion("vAN-20200301_ROOT6-1");
-
+  //plugin->SetAliPhysicsVersion("v5-09-53c-01-1");
   // Declare input data to be processed.
   // Method 1: Create automatically XML collections using alien 'Contains' command.
   // Define production directory LFN
@@ -131,6 +131,76 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
       plugin->AddRunNumber(271870);
       plugin->AddRunNumber(271871);
       plugin->AddRunNumber(271873);
+      plugin->AddRunNumber(271874);
+      plugin->AddRunNumber(271880);
+      plugin->AddRunNumber(271881);
+      plugin->AddRunNumber(271881);
+      plugin->AddRunNumber(272036);
+      plugin->AddRunNumber(272038);
+      plugin->AddRunNumber(272039);
+      plugin->AddRunNumber(272040);
+      plugin->AddRunNumber(272041);
+      plugin->AddRunNumber(272100);
+      plugin->AddRunNumber(272101);
+      plugin->AddRunNumber(272123);
+      plugin->AddRunNumber(272152);
+      plugin->AddRunNumber(272153);
+      plugin->AddRunNumber(272154);
+      plugin->AddRunNumber(272155);
+      plugin->AddRunNumber(272156);
+      plugin->AddRunNumber(272194);
+      plugin->AddRunNumber(272335);
+      plugin->AddRunNumber(272359);
+      plugin->AddRunNumber(272360);
+      plugin->AddRunNumber(272388);
+      plugin->AddRunNumber(272389);
+      plugin->AddRunNumber(272394);
+      plugin->AddRunNumber(272395);
+      plugin->AddRunNumber(272399);
+      plugin->AddRunNumber(272400);
+      plugin->AddRunNumber(272411);
+      plugin->AddRunNumber(272413);
+      plugin->AddRunNumber(272461);
+      plugin->AddRunNumber(272462);
+      plugin->AddRunNumber(272463);
+      plugin->AddRunNumber(272468);
+      plugin->AddRunNumber(272521);
+      plugin->AddRunNumber(272574);
+      plugin->AddRunNumber(272575);
+      plugin->AddRunNumber(272577);
+      plugin->AddRunNumber(272585);
+      plugin->AddRunNumber(272607);
+      plugin->AddRunNumber(272608);
+      plugin->AddRunNumber(272610);
+      plugin->AddRunNumber(272692);
+      plugin->AddRunNumber(272712);
+      plugin->AddRunNumber(272746);
+      plugin->AddRunNumber(272746);
+      plugin->AddRunNumber(272747);
+      plugin->AddRunNumber(272749);
+      plugin->AddRunNumber(272760);
+      plugin->AddRunNumber(272763);
+      plugin->AddRunNumber(272764);
+      plugin->AddRunNumber(272782);
+      plugin->AddRunNumber(272784);
+      plugin->AddRunNumber(272828);
+      plugin->AddRunNumber(272829);
+      plugin->AddRunNumber(272833);
+      plugin->AddRunNumber(272836);
+      plugin->AddRunNumber(272870);
+      plugin->AddRunNumber(272871);
+      plugin->AddRunNumber(272903);
+      plugin->AddRunNumber(272905);
+      plugin->AddRunNumber(272932);
+      plugin->AddRunNumber(272933);
+      plugin->AddRunNumber(272934);
+      plugin->AddRunNumber(272935);
+      plugin->AddRunNumber(272939);
+      plugin->AddRunNumber(272947);
+      plugin->AddRunNumber(272949);
+      plugin->AddRunNumber(273099);
+      plugin->AddRunNumber(273100);
+      plugin->AddRunNumber(273103);
 
       
     }
@@ -528,10 +598,24 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
   //    plugin->SetGridWorkingDir("03122019_PHYTHIA");
   //  plugin->SetGridWorkingDir("05122019_PHYTHIA_all");
   //  plugin->SetGridWorkingDir("17122019_EPOS_pp");
-  //  plugin->SetGridWorkingDir("pPb_Efficiency_AMPT_20200302");
-  //  plugin->SetGridWorkingDir("pPb_Efficiency_EPOS_20200302");
+  //plugin->SetGridWorkingDir("pPb_Efficiency_AMPT_20200302");
+  
+
+
+  //plugin->SetGridWorkingDir("pPb_Efficiency_EPOS_20200302");
+  
   //  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302");
-  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302_properaliroot");
+
+  //  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302_properaliroot");
+  //  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302_properaliroot_modiOCDB");
+  //  plugin->SetGridWorkingDir("pp_Efficiency_18c12_20200302_properaliroot_modiAODB");
+  //  plugin->SetGridWorkingDir("hoge");
+  //  plugin->SetGridWorkingDir("hoge_properaliroot");
+  //  plugin->SetGridWorkingDir("hoge_properaliroot_1");
+  //  plugin->SetGridWorkingDir("hoge_properaliroot_2");
+  //  plugin->SetGridWorkingDir("hoge_properaliroot_3");
+  //  plugin->SetGridWorkingDir("pp_18c12_20200302");
+  plugin->SetGridWorkingDir("pp_18c12_20200304");
 
   // Declare alien output directory. Relative to working directory.
   plugin->SetGridOutputDir("output"); // In this case will be $HOME/work/output
@@ -549,7 +633,8 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 
    // Declare the output file names separated by blancs.
    // (can be like: file.root or file.root@ALICE::Niham::File)
-   plugin->SetDefaultOutputs("");
+     plugin->SetDefaultOutputs("");
+   //  plugin->SetDefaultOutputs();
 
    // Optionally define the files to be archived.
    //   plugin->SetOutputArchive("log_archive.zip:stdout,stderr@ALICE::NIHAM::File root_archive.zip:*.root@ALICE::NIHAM::File");
@@ -563,7 +648,7 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
    else if(data.Contains("LHC15n"))plugin->SetNrunsPerMaster(35);
    else if(  data.Contains("LHC17f2b_fast") ||data.Contains("LHC17f2a_fast") )plugin->SetNrunsPerMaster(35);
    else if(  data.Contains("LHC19h12") )plugin->SetNrunsPerMaster(35);
-   else plugin->SetNrunsPerMaster(1);
+   else plugin->SetNrunsPerMaster(35);
 
    if(isMC){
 	 //plugin->SetSplitMaxInputFileNumber(5);
