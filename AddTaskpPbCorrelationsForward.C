@@ -9,8 +9,8 @@ AliAnalysisTaskSEpPbCorrelationsForward* AddTaskpPbCorrelationsForward(
 								       TString anamode         ="TPCFMDC",//TPCTPC, TPCV0A, TPCV0C, V0AV0C,TPCFMD, TPCFMDC, FMDFMD, SEC
 								       TString anacent         ="V0A",
 								       TString assomode        ="hadron",
-								       Int_t ffilterbit        =5,
-								       Int_t fFMDcutpar        =3,
+								       Int_t ffilterbit        =32,
+								       Int_t fFMDcutpar        =7,
 								       Bool_t fmakehole        =kFALSE,
 								       Bool_t fprim            =kTRUE,
 								       Bool_t fcentcalib       =kTRUE,

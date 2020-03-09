@@ -2115,6 +2115,36 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
 	 FMDcutcpar0=2.;
 	 FMDcutcpar1=400;
 	 break;
+       case 6:
+	 FMDcutapar0=1.75;
+	 FMDcutapar1=150;
+	 FMDcutcpar0=1.4;
+	 FMDcutcpar1=120;
+	 break;
+       case 7:
+	 FMDcutapar0=1.64755;
+	 FMDcutapar1=119.602;
+	 FMDcutcpar0=2.73426;
+	 FMDcutcpar1=150.31;
+	 break;
+       case 8:
+	 FMDcutapar0=1.64755;
+	 FMDcutapar1=159.47;
+	 FMDcutcpar0=2.73426;
+	 FMDcutcpar1=200.413;
+	 break;
+       case 9:
+	 FMDcutapar0=1.2031;
+	 FMDcutapar1=73.123;
+	 FMDcutcpar0=2.25453;
+	 FMDcutcpar1=104.941;
+	 break;
+       case 10:
+	 FMDcutapar0=1.2031;
+	 FMDcutapar1=97.4973;
+	 FMDcutcpar0=2.25453;
+	 FMDcutcpar1=139.921;
+	 break;
        default: break;
        }
        
@@ -3641,9 +3671,9 @@ Bool_t AliAnalysisTaskSEpPbCorrelationsForward::IsAcceptedTrack(const AliAODTrac
     return kFALSE;
   //  if(!aodTrack->TestFilterMask(BIT(5))) return kFALSE; // standard cut with
   //  tight DCA cut
-  if (!aodTrack->TestFilterMask(BIT(ffilterbit)))
-    return kFALSE; // only tpc cut
-  /*
+  //  if (!aodTrack->TestFilterMask(BIT(ffilterbit)))
+  if (!aodTrack->TestFilterBit(ffilterbit)) return kFALSE;
+    /*
   if (!aodTrack->IsOn(AliAODTrack::kTPCrefit)) return kFALSE;
   Float_t nCrossedRowsTPC =aodTrack->GetTPCClusterInfo(2,1);
   if (nCrossedRowsTPC < 70) return kFALSE;
