@@ -806,7 +806,7 @@ void AliAnalysisTaskSEpPbCorrelationsForward::UserCreateOutputObjects() {
      fOutputList2->Add(fFMDV0C);
      fFMDV0C_post = new TH2F("FMDV0C_post", "FMD vs V0C post cut;FMD;V0C;",1000, 0, 1000, 1000, 0, 1000);
      fOutputList2->Add(fFMDV0C_post);
-
+   }
      fV0Amultprim = new TH1F("fV0Amultprim", " V0mult",1000,-0.5,999.5);
      fOutputList2->Add(fV0Amultprim);
      fV0Amultmodi = new TH1F("fV0Amultmodi", " V0multmodi",1000,-0.5,999.5);
@@ -841,7 +841,7 @@ void AliAnalysisTaskSEpPbCorrelationsForward::UserCreateOutputObjects() {
      
      fhtrackletsdphi=new TH1F("fhtrackletsdphi","dphi tracklets",100,-100,100);
      fOutputList2->Add(fhtrackletsdphi);
-   }
+   
    
    fh2_FMD_acceptance=new TH2D("fh2_FMD_acceptance","fh2_FMD_acceptance",200,-4,6,200,-10,10);
    fOutputList2->Add(fh2_FMD_acceptance);
@@ -1985,7 +1985,11 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
        }
      }
    }
-   Float_t nFMD_fwd_hits=0;
+ 
+   if(fAnaMode=="TPCFMD"||fAnaMode=="TPCFMDC"||fAnaMode=="ITSFMD"||fAnaMode=="ITSFMDC"||fAnaMode=="FMDFMD")
+        {
+	  
+  Float_t nFMD_fwd_hits=0;
    Float_t nFMD_bwd_hits=0;
    AliAODForwardMult*aodForward=static_cast<AliAODForwardMult*>(fEvent->FindListObject("Forward"));
    // Shape of d2Ndetadphi: 200, -4, 6, 20, 0, 2pi
@@ -1997,9 +2001,7 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
    Double_t pt = 0;
    
 
-
-   //   if(fAnaMode=="TPCFMD"||fAnaMode=="TPCFMDC"||fAnaMode=="ITSFMD"||fAnaMode=="ITSFMDC"||fAnaMode=="FMDFMD")
-   //     {
+   
      for (Int_t iEta = 1; iEta <= nEta; iEta++) {
        Int_t valid = Int_t(d2Ndetadphi.GetBinContent(iEta, 0));
        if (!valid) {
@@ -2165,7 +2167,7 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
      fFMDV0_post->Fill(nFMD_bwd_hits + nFMD_fwd_hits, nV0C_hits + nV0A_hits);
      fFMDV0A_post->Fill(nFMD_fwd_hits, nV0A_hits);
      fFMDV0C_post->Fill(nFMD_bwd_hits, nV0C_hits);
-     
+	}
    fHist_Stat->Fill(6);
    fHistCentrality->Fill(lCentrality);
    fHistzvertex->Fill(tPrimaryVtxPosition[2]);
