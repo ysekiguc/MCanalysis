@@ -2,11 +2,13 @@
 AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
 {
   //  TString data     = "LHC17f2a_fast";//epos
+  //TString data     = "LHC17f2b_fast";//dpmjet
+  TString data     = "LHC17f2b_cent_wosdd";//dpmjet
   //  TString data="LHC18h2_extra";//PYTHIA anchored to LHC18f
   //  TString data ="LHC18a9_extra";//PYTHIA
   //  TString data ="LHC16d3";//EPOS_pp
   
-   TString data ="LHC18c12";//PYTHIApp
+  //   TString data ="LHC18c12";//PYTHIApp
   
   // TString data     = "LHC19h12a_fast";//AMPT default
   //  TString data     = "LHC19h12b_fast";//LHC17i2f";
@@ -23,8 +25,8 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
   plugin->SetOverwriteMode();
   
   plugin->SetMergeViaJDL(1);//
-  // plugin->SetRunMode("full");
-  plugin->SetRunMode("terminate");
+   plugin->SetRunMode("full");
+  //  plugin->SetRunMode("terminate");
   //  plugin->SetRunMode("test");
   
   //Set versions of used packages
@@ -415,14 +417,16 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
     }
 
     
-    if(data.Contains("LHC17f2b_fast") ||data.Contains("LHC17f2a_fast")||data.Contains("LHC19h12")){
+    if(data.Contains("LHC17f2b") ||data.Contains("LHC17f2a_fast")||data.Contains("LHC19h12")){
 	if(data.Contains("LHC17f2b_fast")) plugin->SetGridDataDir("/alice/sim/2017/LHC17f2b_fast");
+	else if(data.Contains("LHC17f2b_cent_wosdd")) plugin->SetGridDataDir("/alice/sim/2017/LHC17f2b_cent_woSDD");
 	else if(data.Contains("LHC17f2a_fast")) plugin->SetGridDataDir("/alice/sim/2017/LHC17f2a_fast_fix");
 	else if(data.Contains("LHC19h12a_fast")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12a_fast");
 	else if(data.Contains("LHC19h12b_fast")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12b_fast");
 	else if(data.Contains("LHC19h12c_fast")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12c_fast");
 	else if(data.Contains("LHC19h12a_cent_wosdd")) plugin->SetGridDataDir("/alice/sim/2019/LHC19h12a_cent_woSDD");
-	plugin->SetDataPattern("AOD228/*/AliAOD.root");
+	if(data.Contains("LHC17f2b")) plugin->SetDataPattern("AOD202/*/AliAOD.root");
+	   else plugin->SetDataPattern("AOD228/*/AliAOD.root");
 	//LHC16t
 	plugin->AddRunNumber(267166);
 	plugin->AddRunNumber(267165);
@@ -615,7 +619,8 @@ AliAnalysisGrid* CreateAlienHandler(Bool_t isMC,Bool_t fAOD)
   //  plugin->SetGridWorkingDir("hoge_properaliroot_2");
   //  plugin->SetGridWorkingDir("hoge_properaliroot_3");
   //  plugin->SetGridWorkingDir("pp_18c12_20200302");
-  plugin->SetGridWorkingDir("pp_18c12_20200304");
+  //  plugin->SetGridWorkingDir("pp_18c12_20200304");
+  plugin->SetGridWorkingDir("pPb_Efficiency_DPMJETcent_20200309_filterbit32");
 
   // Declare alien output directory. Relative to working directory.
   plugin->SetGridOutputDir("output"); // In this case will be $HOME/work/output
