@@ -6,7 +6,7 @@ AliAnalysisTaskSEpPbCorrelationsForward* AddTaskpPbCorrelationsForward(
 								       Bool_t  fDataType       =kFALSE,//TRUE=real data, FALSE=MC
 								       Bool_t frun2            =kTRUE,
 								       Bool_t fFMDcut          =kTRUE,
-								       TString anamode         ="TPCFMDC",//TPCTPC, TPCV0A, TPCV0C, V0AV0C,TPCFMD, TPCFMDC, FMDFMD, SECA
+								       TString anamode         ="TPCFMDC",//TPCTPC, TPCV0A, TPCV0C, V0AV0C,TPCFMD, TPCFMDC, FMDFMD, SEC
 								       TString anacent         ="V0A",
 								       TString assomode        ="hadron",
 								       Int_t ffilterbit        =5,
