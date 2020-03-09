@@ -1985,6 +1985,9 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
        }
      }
    }
+
+     Float_t nV0A_hits = fvzero->GetMTotV0A();
+     Float_t nV0C_hits = fvzero->GetMTotV0C();
  
    if(fAnaMode=="TPCFMD"||fAnaMode=="TPCFMDC"||fAnaMode=="ITSFMD"||fAnaMode=="ITSFMDC"||fAnaMode=="FMDFMD")
         {
@@ -2068,8 +2071,6 @@ void AliAnalysisTaskSEpPbCorrelationsForward::DefineCorrOutput() {
      
      DumpTObjTable("End of fill fmd tracks");
      
-     Float_t nV0A_hits = fvzero->GetMTotV0A();
-     Float_t nV0C_hits = fvzero->GetMTotV0C();
      fFMDV0->Fill(nFMD_bwd_hits + nFMD_fwd_hits, nV0C_hits + nV0A_hits);
      fFMDV0A->Fill(nFMD_fwd_hits, nV0A_hits);
      fFMDV0C->Fill(nFMD_bwd_hits, nV0C_hits);
