@@ -52,8 +52,8 @@
   gSystem->Load("libPWGCFCorrelationsDPhi.so"); //comment out on 19.12.2017
   //gSystem->Load("libPWGCFCorrelationsJCORRAN.so");
   gSystem->Load("libPWGCFChaoticity.so");
-  //  gSystem->Load("libPWGCFFEMTOSCOPYAOD.so");
-  // gSystem->Load("libPWGCFfemtoscopy.so");
+  //gSystem->Load("libPWGCFFEMTOSCOPYAOD.so");
+  //gSystem->Load("libPWGCFfemtoscopy.so");
 
   gSystem->Load("libPWGCFfemtoscopyUser.so");
 
@@ -74,7 +74,7 @@
 
   gSystem->Load("libACORDEbase.so");
 
-  //  gSystem->Load("libESD.so");
+  //gSystem->Load("libESD.so");
   //gSystem->Load("libMinuit");
 
   // Use AliRoot includes to compile our task
@@ -100,19 +100,29 @@
       if(iAODAnalysis){
         chain=new TChain("aodTree");
 	if(mac){
-	  //chain->Add("~/tmp/AliAOD.root");
-	  //	  chain->Add("~/workalice/alice_data/2019/LHC19h12a_fast/265525/AOD/001/AliAOD.root");
-	  //	  chain->Add("~/workalice/alice_data/2018/LHC18a9_extra/281961/AOD209/0001/AliAOD.root");
-	  // chain->Add("~/workalice/alice_data/2018/LHC18k3b/294925/001/AliAOD.root");//PYTHIA
-	  //	  chain->Add("~/workalice/alice_data/2017/LHC17if2/245068/AOD217/0001/AliAOD.root");
+	  //chain->Add("~/workalice/alice_data/2019/LHC19h12a_fast/265525/AOD/001/AliAOD.root");//pPb AMPT
+	  
+	  //chain->Add("~/workalice/alice_data/2018/LHC18a9_extra/281961/AOD209/0001/AliAOD.root");　//PYTHIA
+												   
+	  //chain->Add("~/workalice/alice_data/2018/LHC18k3b/294925/001/AliAOD.root");//PYTHIA
+	  chain->Add("~/workalice/alice_data/2017/LHC17if2/245068/AOD217/0001/AliAOD.root"); //PbPb AMPT
+
+	  //  chain->Add("~/workalice/alice_data/2018/LHC18c12_extra/273103/AOD231/0001/AliAOD.root"); //
+	  //chain->Add("~/workalice/alice_data/2019/LHC19h11/LHC19h11a_extra/287658/AOD230/0001/AliAOD.root"); //AMPT pPb
+	  //chain->Add("~/workalice/alice_data/2017/LHC17i2/246994/AOD/001/AliAOD.root");
 	  //	  chain->Add("~/workalice/MCESDtoAOD/08072019_1100/AliAOD.root");
 
-	  chain->Add("~/workalice/alice_data/2018/LHC18c12/271953/AOD231/0002/AliAOD.root");
+	  //	  chain->Add("~/workalice/alice_data/2018/LHC18c12/271953/AOD231/0002/AliAOD.root");
 	  //chain->Add("~/workalice/alice_data/2017/LHC17f2a_fast_fix/265309/002/AliAOD.root");
 	  //	  chain->Add("~/workalice/alice_data/EPOS/ESDtoAOD/265309/AliAOD_001.root");
 	  //	  chain->Add("~/workalice/alice_data/2017/LHC17f2a_fast_fix/265309/AOD228/0002/AliAOD.root");
-	  //chain->Add("~/workalice/alice_data/2017/LHC17f2a_cent_woSDD_fix/265309/AOD228/0026/AliAOD.root");
+	  //
 
+	  //
+	  //	  chain->Add("~/workalice/alice_data/2017/LHC17f2a_cent_woSDD_fix/265309/AOD228/0026/AliAOD.root");
+	  //	  chain->Add("~/workalice/alice_data/2017/LHC17f2b_fast/265309/AOD202/001/AliAOD.root");
+	  
+	  //chain->Add("~/workalice/alice_data/2016/LHC16d3/226500/AOD209/0001/AliAOD.root");
 	}else{
 	  //	chain->Add("/home/sekiguchi/work/local_alicework/alice_data/2017/LHC17f2b_fast/265309/001/AliAOD.root");//EPOS
 	}
@@ -155,7 +165,6 @@
        gROOT->ProcessLine(".L $ALICE_PHYSICS/OADB/macros/AddTaskPhysicsSelection.C");
        AddTaskPhysicsSelection(useMC,true);
 
-
        gROOT->ProcessLine(".L $ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/macros/AddTaskMultSelection.C");
        AliMultSelectionTask *multSelTask=AddTaskMultSelection(false);
        //       multSelTask->SetUseDefaultMCCalib(1);
@@ -163,7 +172,8 @@
        
        //multSelTask->SetAlternateOADBFullManualBypassMC("$ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/data/OADB-LHC16q-DefaultMC-EPOSLHC.root");
        //       multSelTask->SetAlternateOADBFullManualBypassMC("$ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/data/OADB-LHC16q.root");
-       multSelTask->SetAlternateOADBforEstimators("LHC16q");
+       //       multSelTask->SetAlternateOADBforEstimators("LHC16q");
+       multSelTask->SetAlternateOADBFullManualBypassMC("$ALICE_PHYSICS/OADB/COMMON/MULTIPLICITY/data/OADB-LHC16q-DefaultMC-DPMJet.root ");
      }else{
        gROOT->LoadMacro("$ALICE_PHYSICS/OADB/macros/AddTaskPhysicsSelection.C");
        AddTaskPhysicsSelection(useMC,true);
@@ -171,26 +181,28 @@
        AliMultSelection* mult=AddTaskMultSelection();
      }
    }
-   if(mac)     gROOT->ProcessLine(".L $ALICE_ROOT/ANALYSIS/macros/AddTaskPIDResponse.C");
+   if(mac)      gROOT->ProcessLine(".L $ALICE_ROOT/ANALYSIS/macros/AddTaskPIDResponse.C");
    else  gROOT->LoadMacro("$ALICE_ROOT/ANALYSIS/macros/AddTaskPIDResponse.C");
    
    AddTaskPIDResponse(useMC);
-
-
-   //
+   //   AddTaskPIDResponse(kTRUE, kTRUE, kTRUE, 2, kFALSE, "", kTRUE, kTRUE);
+   
  //  //   gROOT->LoadMacro("AddTaskPIDResponse.C");
  //  Bool_t isMC = kFALSE;
- //  Bool_t autoMCesd = kTRUE;
- //  Bool_t tuneOnData = kFALSE;
- //  Int_t recoPass = 2;
- //  Bool_t cachePID = kFALSE;
- //  Bool_t useTPCEtaCorrection = kTRUE;
- //  Bool_t useTPCMultiplicityCorrection = kFALSE;
- //   Int_t recoDataPass = 2;
- //  //  Int_t recoDataPass = 2;
+   
+   Bool_t autoMCesd = kTRUE;
+   Bool_t tuneOnData = kTRUE;
+   Int_t recoPass = 2;
+   Bool_t cachePID = kFALSE;
+   Bool_t useTPCEtaCorrection = kTRUE;
+   Bool_t useTPCMultiplicityCorrection = kTRUE;
+   Int_t recoDataPass = 2;
  //
- //  AliAnalysisTaskSE *setupTask = AddTaskPIDResponse(isMC,autoMCesd,tuneOnData,recoPass,cachePID,"",useTPCEtaCorrection,useTPCMultiplicityCorrection,recoDataPass);
- //
+ //  AliAnalysisTaskSE *setupTask =AddTaskPIDResponse(isMC,autoMCesd,tuneOnData,recoPass,cachePID,"",useTPCEtaCorrection,useTPCMultiplicityCorrection,recoDataPass);
+   
+   AddTaskPIDResponse(useMC,autoMCesd,tuneOnData,recoPass,cachePID,"",useTPCEtaCorrection,useTPCMultiplicityCorrection,recoDataPass);
+
+//
    
    if(mac){
      gROOT->ProcessLine(".x AliAnalysisTaskSEpPbCorrelationsForward.cxx++g");

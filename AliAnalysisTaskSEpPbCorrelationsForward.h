@@ -67,8 +67,10 @@ public:
   virtual void Setacceptancehole(Bool_t mode){fmakehole=mode;}
   virtual void SetAnalysisCent(TString mode) { fCentType = mode; }
   virtual void SetAnalysisCollisionType(TString mode) { fcollisiontype = mode; }
+  virtual void SetMCclosure(Bool_t mode) { fMCclosure = mode; }
   virtual void SetFillCorrelation(Bool_t mode) { ffillcorrelation = mode; }
   virtual void Setmcprim(Bool_t mode){fprim=mode;}
+  virtual void SetQAmode(Bool_t mode){fQA=mode;}
   
   void SetMaxNEventsInPool(Int_t events) { fPoolMaxNEvents = events; }
   void SetMinNTracksInPool(Int_t tracks) { fPoolMinNTracks = tracks; }
@@ -148,6 +150,7 @@ private:
   Bool_t fcentcalib;
   Bool_t frun2;
   Bool_t fQA;
+  Bool_t fMCclosure;
   Bool_t fFMDcut;
   Int_t fFMDcutmode;
   Bool_t fptdiff;
@@ -172,6 +175,7 @@ private:
   TList *fOutputList2; // Output list
 
   AliPIDResponse *fPIDResponse; // PID Response
+  TH2D* fhcorreffi[10];
 
   Int_t ffilterbit;
   Double_t fPtMin;
@@ -259,11 +263,21 @@ private:
   AliTHn *fHistLeadQA;
   AliTHn *fHistPIDQA;
 
+  TH1D* fhistmcprimpt;
+  TH1D* fhistrecopt;
+  
   AliTHn* fhistmcprim;
   AliTHn* fhistmcprimfinal;
   TH2D* fNTrackCorrMC;
   TH2D*fhmcprimvzeta;
-
+  TH2D*fhrecovzeta;
+  TH2D*fhmcrapicent;
+  TH1D* fhmcprimforwardpt;
+  TH2D* fhmcpteta[10];
+  TH2D* fhrecopteta[10];
+  
+  TH2D*fhistmeanpt;
+  
   TH1F*frefvz;
   TH1D*fhcorr[10];
 
@@ -272,14 +286,14 @@ private:
   TH1D*fhrefphiFMD[4];
 
   TH2D*  fh2_FMD_acceptance_prim;
-  TH2D*  fh2_FMD_eta_phi_prim;
+  TH2D*  fh2_FMD_eta_phi_prim[10];
   TH2D*  fh2_FMD_acceptance;
   TH2D*  fh2_ITS_acceptance;
   TH2F*  fh2_SPD_multcorr;
   TH2F*  fh2_SPDV0_multcorr;
   TH2F*  fh2_SPDtrack_multcorr;
   TH1F*  fhtrackletsdphi;
-  TH2D*  fh2_FMD_eta_phi;
+  TH2D*  fh2_FMD_eta_phi[10];
   TH1F* fHist_NeventRun;
   TH1F* fHist_V0AMultRun;
   TH1F* fHist_V0CMultRun;

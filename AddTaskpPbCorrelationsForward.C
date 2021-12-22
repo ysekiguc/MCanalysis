@@ -2,23 +2,24 @@ AliAnalysisTaskSEpPbCorrelationsForward* AddTaskpPbCorrelationsForward(
 								       TString  fListName      ="pPbCorrelations_1",
 								       TString  fListName1     ="Corr_1",
 								       TString  fListName2     ="QA_1",
-								       TString  fCollisiontype ="pPb",
+								       TString  fCollisiontype ="PbPb",
 								       Bool_t  fDataType       =kFALSE,//TRUE=real data, FALSE=MC
 								       Bool_t frun2            =kTRUE,
-								       Bool_t fFMDcut          =kTRUE,
-								       TString anamode         ="TPCFMDC",//TPCTPC, TPCV0A, TPCV0C, V0AV0C,TPCFMD, TPCFMDC, FMDFMD, SEC
-								       TString anacent         ="V0A",
-								       TString assomode        ="hadron",
+								       Bool_t fFMDcut          =kFALSE,
+								       TString anamode         ="TPCFMD",//TPCTPC, TPCV0A, TPCV0C, V0AV0C,TPCFMD, TPCFMDC, FMDFMD, SEC
+								       TString anacent         ="V0M",
+ 								       TString assomode        ="hadron",
 								       Int_t ffilterbit        =32,
 								       Int_t fFMDcutpar        =7,
 								       Bool_t fmakehole        =kFALSE,
-								       Bool_t fprim            =kTRUE,
-								       Bool_t fcentcalib       =kTRUE,
-								       Bool_t fptdiff          =kFALSE,
-								       Float_t fPtMin          =0.2,
-								       Float_t fPtMax          =8.,
-								       Bool_t fextractsec      =kTRUE,
-								       Bool_t ffillcorrelation =kFALSE
+								       Bool_t fprim            =kFALSE,
+								       Bool_t fcentcalib       =kFALSE,
+								       Bool_t fptdiff          =kTRUE,
+								       Float_t fPtMin          =0.15,
+								       Float_t fPtMax          =15.,
+								       Bool_t fextractsec      =kFALSE,
+								       Bool_t ffillcorrelation =kFALSE,
+								       Bool_t fMCclosure=kFALSE
 								       )
 {
   // Get the current analysis manager.
@@ -76,12 +77,15 @@ AliAnalysisTaskSEpPbCorrelationsForward* AddTaskpPbCorrelationsForward(
   myTask->SetPtdiff(fptdiff);
   myTask->SetPtMax(fPtMax);
   myTask->SetPtMin(fPtMin);
-  myTask->SetFillCorrelation(ffillcorrelation);  
-
+  myTask->SetFillCorrelation(ffillcorrelation);
+  myTask->SetMCclosure(fMCclosure);
+  myTask->SetQAmode(kTRUE);
+  myTask->SetExtractSec(fextractsec);    
+  
   //  if(fCollisiontype=="PP")myTask->SetPoolCentBinLimits(cent_mult_bin_numbPP,cent_mult_binlimitsPP);
-  if(fCollisiontype=="PbPb")myTask->SetPoolCentBinLimits(cent_mult_bin_numbPbPb,cent_mult_binlimitsPbPb);
-  if(fCollisiontype=="pPb")myTask->SetPoolCentBinLimits(cent_mult_bin_numbpPb,cent_mult_binlimitspPb);
-  if(fCollisiontype=="HMPP"|| fCollisiontype=="PP"||fCollisiontype=="MBPP") myTask->SetPoolCentBinLimits(cent_mult_bin_numbHMPP,cent_mult_binlimitsHMPP);
+  //  if(fCollisiontype=="PbPb")myTask->SetPoolCentBinLimits(cent_mult_bin_numbPbPb,cent_mult_binlimitsPbPb);
+  if(fCollisiontype=="pPb"||fCollisiontype=="PbPb")myTask->SetPoolCentBinLimits(cent_mult_bin_numbpPb,cent_mult_binlimitspPb);
+  else if(fCollisiontype=="HMPP"|| fCollisiontype=="PP"||fCollisiontype=="MBPP") myTask->SetPoolCentBinLimits(cent_mult_bin_numbHMPP,cent_mult_binlimitsHMPP);
   mgr->AddTask(myTask);
 
   //cout<<"hogehoge"<<endl;
